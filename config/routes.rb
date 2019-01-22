@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :reviews, only: [:index, :update]
-      resources :shows, only: [:index, :update]
+      resources :reviews, only: [:index, :update, :create]
+      resources :shows, only: [:index, :update, :show]
       resources :users, only: [:index]
     end
   end

@@ -1,15 +1,20 @@
 class Api::V1::ShowsController < ApplicationController
-  before_action :find_show, only: [:update]
+  before_action :find_show, only: [:update, :show]
 
   def index
     @shows = Show.all
     render json: @shows
   end
 
+  def show
+    render json: @show
+  end
+
   def update
     @show.update(show_params)
     if @show.save
-      render json: @note, status: :accepted
+      @shows = Show.all
+      render json: @shows, status: :accepted
     else
       render json: {errors: @show.errors.full_messages}, status: :unprocessable_entity
     end
