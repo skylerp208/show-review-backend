@@ -1,5 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
-  before_action :find_review, only: [:update]
+  before_action :find_review, only: [:update, :destroy]
 
   def index
     @reviews = Review.all
@@ -22,6 +22,12 @@ class Api::V1::ReviewsController < ApplicationController
       render json: {errors: @review.errors.full_messages}, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @shows = Show.all
+    @review.destroy
+    render json: @shows
+  end 
 
   private
 
